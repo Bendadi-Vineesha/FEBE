@@ -1,0 +1,29 @@
+package com.cts.usecaseproject.Repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.cts.usecaseproject.Model.Author;
+
+@Repository
+public interface AuthorRepository extends JpaRepository<Author,Integer> {
+	
+//	@Query(value="select author from Author where author.author = ?1")
+	@Query(nativeQuery=true)
+	List<Author> findByAuthor(String author);
+	
+//	@Query(value = "SELECT new com.bethelcrm.bbcmembersmanagementsystem.dto.ZoneMemDto(z.name, m.first_name, m.last_name)"+"FROM members_test m JOIN zones_test z WHERE z.zone_id = m.zone_id", nativeQuery = true).
+	
+//	@Query("select new com.example.IdsOnly(t.id, t.otherId) from TestTable t where t.creationDate > ?1 and t.type in (?2)")
+	@Query(value="select author from Author where author.author =: p")
+	List<Author> findByPrice(@Param("price")int price);
+	
+	List<Author> findByCategory(String Category);
+	
+	List<Author> findByPublisher(String publisher);
+
+}

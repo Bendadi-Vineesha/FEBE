@@ -1,0 +1,32 @@
+package com.cts.usecaseproject.Service;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cts.usecaseproject.Model.Author;
+import com.cts.usecaseproject.Repository.AuthorRepository;
+
+@Service
+public class AuthorService {
+	
+	@Autowired
+	private AuthorRepository repo;
+	
+	public Author saveOrUpdate(Author author) {
+		return repo.save(author);
+		}
+
+	public String delete(Integer id) {
+		repo.deleteById(id);
+		return "deleted succesfully";
+	}
+	
+	
+	public List<Author> getByCategory(String category) {
+		return repo.findByCategory(category);
+	}
+
+}

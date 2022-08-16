@@ -1,0 +1,99 @@
+package com.cts.usecaseproject.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.cts.usecaseproject.Model.Author;
+import com.cts.usecaseproject.Model.AuthorModel;
+import com.cts.usecaseproject.Model.Book;
+import com.cts.usecaseproject.Service.AuthorService;
+
+@RestController
+@RequestMapping("/author")
+@CrossOrigin
+public class AuthorController {
+
+	@Autowired
+	private KafkaTemplate<String, Book> kafkaTemplate;
+
+	private static final String TOPIC = "create_book";
+	
+//	@Autowired
+//	BookAuthorClient client;
+
+	@Autowired
+	AuthorService service;
+	
+	@Autowired
+	private RestTemplate template;
+	
+	
+//	@Autowired
+//	private PasswordEncoder bcryptEncoder;
+
+
+	@PostMapping(value="/createauthor",produces= {MediaType.APPLICATION_JSON_VALUE},
+			consumes= {MediaType.APPLICATION_JSON_VALUE})
+	public Author createAuthor(@RequestBody AuthorModel author) {
+		return service.saveAuthorDetails(author);
+	}
+     //create book with out kafka
+	@PostMapping(value="/createbook",produces= {MediaType.APPLICATION_JSON_VALUE},consumes= {MediaType.APPLICATION_JSON_VALUE})
+	public Book createBook(@RequestBody Book book) {
+		String uri ="http://localhost:9090/api/v1/digitalbooks/books/create";
+		return template.postForEntity(uri, book, Book.class).getBody() ;
+	}
+	
+	//create book with kafka
+//	@PostMapping(value="/createbook",produces= {MediaType.APPLICATION_JSON_VALUE},consumes= {MediaType.APPLICATION_JSON_VALUE})
+//	public String createBook(@RequestBody Book book) {
+//	//	String uri ="http://localhost:9090/api/v1/digitalbooks/books/create";
+//		 kafkaTemplate.send(TOPIC,book);
+//		 return "created book sucessfully";
+//	}
+	
+	@PutMapping(value="/updatebook/{id}",produces= {MediaType.APPLICATION_JSON_VALUE},
+			consumes= {MediaType.APPLICATION_JSON_VALUE})
+	public Book updateBook(@PathVariable int id,@RequestBody Book book){
+		System.out.println("===========================");
+		System.out.println(id);
+		book.setId(id);
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<Book> entity = new HttpEntity<Book>(book,headers);
+		System.out.println("================================");
+		String uri ="http://localhost:9090/api/v1/digitalbooks/books/updateBook";
+		System.out.println(uri);
+	//	return template.postForEntity(uri, book, Book.class) ;
+		 return template.exchange(
+		         uri, HttpMethod.PUT, entity, Book.class).getBody();
+		
+		   }
+	
+	
+	
+	
+	//updation book with kafka
+//	@PutMapping(value="/updatebook/{id}",produces= {MediaType.APPLICATION_JSON_VALUE},
+//			consumes= {MediaType.APPLICATION_JSON_VALUE})
+//	public String updateBook(@PathVariable int id,@RequestBody Book book){
+//		book.setId(id);
+//		kafkaTemplate.send(TOPIC,book);
+//		return "updated succesfully" ;
+//	
+//		   }
+//		
+	}
+

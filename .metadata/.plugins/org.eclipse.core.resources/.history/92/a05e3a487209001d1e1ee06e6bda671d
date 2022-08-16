@@ -1,0 +1,24 @@
+package com.cts.usecaseproject.Repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.cts.usecaseproject.Model.Author;
+import com.cts.usecaseproject.Model.Reader;
+
+@Repository
+public interface ReaderRepository extends JpaRepository<Reader, Integer> {
+
+ 
+	List<Author> findByAuthor(String author);
+
+	List<Author> findByPrice(int price);
+
+	List<Author> findByCategory(String Category);
+
+	List<Author> findByPublisher(String publisher);
+
+}

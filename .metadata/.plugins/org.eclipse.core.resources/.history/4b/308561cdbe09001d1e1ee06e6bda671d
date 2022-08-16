@@ -1,0 +1,19 @@
+package com.cts.usecaseproject.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.cts.usecaseproject.Model.Reader;
+import com.cts.usecaseproject.Repository.ReaderRepository;
+
+
+@Service
+public class ReaderService {
+	
+	@Autowired
+	ReaderRepository repo;
+	
+	public Reader saveOrUpdate(Reader reader) {
+		return repo.save(reader);
+	}
+
+}

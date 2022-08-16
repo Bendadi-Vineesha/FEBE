@@ -1,0 +1,26 @@
+package com.cts.usecaseproject.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cts.usecaseproject.Model.Reader;
+import com.cts.usecaseproject.Service.ReaderService;
+
+@RestController
+@RequestMapping("/reader")
+public class ReaderController {
+	
+	@Autowired
+	ReaderService service;
+	
+	@PostMapping("/save")
+	public Reader CreateBook(@RequestBody Reader r) {
+	return service.saveOrUpdate(r);
+	}
+	
+	
+
+}

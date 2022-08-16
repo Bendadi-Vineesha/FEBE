@@ -1,0 +1,21 @@
+package com.cts.usecaseproject.Repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.cts.usecaseproject.Model.Subscription;
+@Repository
+public interface SubscriptionRepository extends JpaRepository<Subscription,Integer>{
+
+	List<Subscription> findBySubscriberEmail(String email);
+
+	@Query("select r from Subscription r where r.book_id=?1 and r.subscriberEmail=?2 ")
+	Subscription findBysubIdandReaderEmail(int bookId, String readerEmail);
+	
+	
+//	@Query("delete r from Subscription r where r.book_id=?1 and r.subscriberEmail=?2")
+//   public void deleteByBookId(int bookId, String email);
+}

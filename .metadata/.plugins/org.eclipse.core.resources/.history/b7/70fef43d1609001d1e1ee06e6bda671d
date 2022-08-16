@@ -1,0 +1,22 @@
+package com.cts.usecaseproject.Repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.cts.usecaseproject.Model.Author;
+import com.cts.usecaseproject.Model.Reader;
+
+public interface ReaderRepository extends JpaRepository<Reader, Integer> {
+
+	@Query("select a from author where a.author =?1")
+	List<Author> findByAuthor(String author);
+
+	List<Author> findByPrice(int price);
+
+	List<Author> findByCategory(String Category);
+
+	List<Author> findByPublisher(String publisher);
+
+}

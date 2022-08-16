@@ -1,0 +1,18 @@
+server.port=8083
+spring.application.name=Digital-Reader
+
+eureka.client.serviceUrl.defaultZone= ${EUREKA_URI:http://localhost:8762/eureka}
+
+
+spring.jpa.hibernate.ddl-auto=update
+#spring.datasource.url = jdbc:mysql://localhost:3306/digitalreaderdb
+#spring.datasource.username=root
+#spring.datasource.password=root
+spring.datasource.url = jdbc:mysql://database-4.cha35cz9aieb.ap-south-1.rds.amazonaws.com:3306/myreaderdb??createDatabaseIfNotExist=true
+spring.datasource.username=admin
+spring.datasource.password=87654321
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.show-sql:true
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+
+spring.jpa.properties.hibernate.globally_quoted_identifiers=true

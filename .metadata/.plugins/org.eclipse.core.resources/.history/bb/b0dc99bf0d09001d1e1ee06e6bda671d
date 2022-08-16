@@ -1,0 +1,14 @@
+package com.cts.usecaseproject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+public class DigitalBookApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DigitalBookApplication.class, args);
+	}
+
+}

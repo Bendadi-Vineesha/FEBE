@@ -1,0 +1,5 @@
+package com.cts.usecaseproject.Repository;
+
+public interface ReaderRepository {
+
+}

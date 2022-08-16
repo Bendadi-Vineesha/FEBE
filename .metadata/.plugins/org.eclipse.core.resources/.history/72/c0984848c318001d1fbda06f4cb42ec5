@@ -1,0 +1,97 @@
+package com.cts.usecaseproject.Service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import com.cts.usecaseproject.Exceptions.BookException;
+import com.cts.usecaseproject.Model.Book;
+import com.cts.usecaseproject.Repository.BookRepository;
+
+@Service
+public class BookService {
+
+	@Autowired
+	BookRepository repo;
+
+	public Book saveOrUpdate(Book book) {
+		return repo.save(book);
+	}
+
+	public List<Book> getBooks() {
+		return repo.findAll();
+	}
+
+	@Cacheable(key = "#category", value = "books")
+	public List<Book> getBookByCategory(String category) throws BookException {
+		List<Book> b = repo.findByCategory(category);
+		if (b.size() == 0) {
+			throw new BookException("Could not find book with category: " + category);
+
+		} else {
+			return b;
+		}
+	}
+
+	@Cacheable(key = "#publisher", value = "books")
+	public List<Book> getBookByPublisher(String publisher) throws BookException {
+		List<Book> b = repo.findByPublisher(publisher);
+		if (b.size() == 0) {
+			throw new BookException("Could not find book with publisher: " + publisher);
+
+		} else {
+			return b;
+		}
+	}
+
+	@Cacheable(key = "#author", value = "books")
+	public List<Book> getBookByAuthor(String author) throws BookException {
+		List<Book> b = repo.findByAuthor(author);
+		if (b.size() == 0) {
+			throw new BookException("Could not find book with author: " + author);
+
+		} else {
+			return b;
+		}
+	}
+
+	@Cacheable(key = "#price", value = "books")
+	public List<Book> getBookByPrice(int price) throws BookException {
+		List<Book> b = repo.findByPrice(price);
+		if (b.size() == 0) {
+			throw new BookException("Could not find book with price: " + price);
+
+		} else {
+			return b;
+		}
+
+	}
+
+	@CacheEvict(key = "#id", value = "books")
+	public String delete(int id) {
+		repo.deleteById(id);
+		return "deleted";
+	}
+
+	@Cacheable(key = "#id", value = "books")
+	public Book getBookById(int id) {
+		return repo.findById(id);
+	}
+
+	@Cacheable(key = "#title", value = "books")
+	public Book getBookByTitle(String title) throws BookException {
+		Book b = repo.findByTitle(title);
+		if (b != null) {
+			return b;
+		} else {
+			throw new BookException("Could not find book with title: " + title);
+		}
+
+	}
+
+	public Book buyBook(int id) {
+		return repo.findById(id);
+	}
+
+}

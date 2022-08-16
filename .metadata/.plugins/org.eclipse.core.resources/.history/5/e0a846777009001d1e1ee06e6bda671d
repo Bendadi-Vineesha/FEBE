@@ -1,0 +1,46 @@
+package com.cts.usecaseproject.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cts.usecaseproject.Model.Author;
+import com.cts.usecaseproject.Model.Reader;
+import com.cts.usecaseproject.Repository.ReaderRepository;
+
+
+@Service
+public class ReaderService {
+	
+	Reader r = new Reader(1,"aa","zz");
+	
+	@Autowired(required=true)
+	ReaderRepository repo;
+	
+	public Reader saveOrUpdate() {
+		return repo.save(r);
+		
+	}
+	
+	
+	
+	public List<Author> getByCategory(String category) {
+		return repo.findByCategory(category);
+	}
+
+
+	public List<Author> getByPublisher(String publisher) {
+		return repo.findByPublisher(publisher);
+	}
+
+
+	public List<Author> getByAuthor(String author) {
+		return repo.findByAuthor(author);
+	}
+
+	public List<Author> getByPrice(int price) {
+		return repo.findByPrice(price);
+	}
+
+}

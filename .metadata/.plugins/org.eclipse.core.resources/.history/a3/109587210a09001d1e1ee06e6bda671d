@@ -1,0 +1,5 @@
+package com.cts.usecaseproject.Model;
+
+public class Author {
+
+}

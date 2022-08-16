@@ -1,0 +1,18 @@
+package com.cts.usecaseproject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+@ComponentScan(basePackages = {"com.cts.usecaseproject"})
+@EnableJpaRepositories("com.cts.usecaseproject.Repository")
+public class DigitalBookApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DigitalBookApplication.class, args);
+	}
+
+}

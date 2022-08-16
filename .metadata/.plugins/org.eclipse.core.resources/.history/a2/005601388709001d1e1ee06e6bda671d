@@ -1,0 +1,77 @@
+package com.cts.usecaseproject.Model;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Reader")
+public class Reader {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "reader_id")
+	private int id;
+	private String name;
+	private String EmailId;
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "author_id")
+	private Author auth;
+
+	public Reader() {
+		super();
+	}
+
+	public Reader(int id, String name, String emailId) {
+		super();
+		this.id = id;
+		this.name = name;
+		EmailId = emailId;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmailId() {
+		return EmailId;
+	}
+
+	public void setEmailId(String emailId) {
+		EmailId = emailId;
+	}
+
+/*	public Author getAuth() {
+		return auth;
+	}
+
+	public void setAuth(Author auth) {
+		this.auth = auth;
+	}
+*/
+	@Override
+	public String toString() {
+		return "Reader [id=" + id + ", name=" + name + ", EmailId=" + EmailId + "]";
+	}
+
+}

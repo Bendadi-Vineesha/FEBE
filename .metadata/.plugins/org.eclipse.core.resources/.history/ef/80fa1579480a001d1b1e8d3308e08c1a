@@ -1,0 +1,5 @@
+package com.cts.usecaseproject.Service;
+
+public interface AuthorServiceImpln {
+
+}

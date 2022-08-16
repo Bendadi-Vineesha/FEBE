@@ -1,0 +1,17 @@
+1658416804137	Rename package 'com.cts.usecaseproject.DigitalBook'
+1658416896383	Delete element
+1658416992110	Rename type 'ReaderSErvice'
+1658417052551	Rename package 'com.cts.usecaseproject.service'
+1658419957581	Delete element
+1658419961300	Delete element
+1658495044769	Delete element
+1658495049515	Delete element
+1658495054379	Delete element
+1658495061265	Delete element
+1658554036513	Rename type 'Author'
+1658554056055	Rename type 'AuthorRepository'
+1658554068427	Rename type 'AuthorController'
+1658554190382	Delete element
+1658559515171	Rename type 'AuthorService'
+1658564181500	Move source folder
+1658564841731	Rename package 'com.cts.usecaseproject.DigitalBook'

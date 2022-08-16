@@ -1,0 +1,52 @@
+package com.cts.usecaseproject.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cts.usecaseproject.Model.Author;
+import com.cts.usecaseproject.Model.Reader;
+import com.cts.usecaseproject.Service.ReaderService;
+
+@RestController
+@RequestMapping("/reader")
+public class ReaderController {
+	
+	@Autowired
+	ReaderService service;
+	
+//	@GetMapping("/create")
+//	public Reader CreateBook(@RequestBody Reader r) {
+//		return service.saveOrUpdate(r);
+//	}
+//	
+//	@GetMapping("/books/{price}")
+//	public ResponseEntity<List<Author>> getBookByPrice(@RequestParam(name = "price") int price) {
+//		List<Author> rp = service.getByPrice(price);
+//		return ResponseEntity.ok().body(rp);
+//	}
+//
+//	@GetMapping("/books/{author}")
+//	public ResponseEntity<List<Author>> getBookByAuthor(@RequestParam(name = "author") String author) {
+//		List<Author> ra = service.getByAuthor(author);
+//		return ResponseEntity.ok().body(ra);
+//	}
+//	
+//	@GetMapping("/books/{publisher}")
+//	public ResponseEntity<List<Author>> getBookByPublisher(@RequestParam(name = "publisher") String publisher ) {
+//		List<Author> ra = service.getByPublisher(publisher);
+//		return ResponseEntity.ok().body(ra);
+//	}
+//	
+//	@GetMapping("/books/{author}")
+//	public ResponseEntity<List<Author>> getBookByCategory(@RequestParam(name = "category") String category) {
+//		List<Author> ra = service.getByCategory(category);
+//		return ResponseEntity.ok().body(ra);
+//	}
+}
